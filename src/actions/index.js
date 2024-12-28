@@ -103,6 +103,30 @@ export const getMoviesDiscover = (name, page) => async (dispatch, getState) => {
   }
 };
 
+// Get TV series
+export const getTVSeries = (page) => async (dispatch, getState) => {
+  const { selected } = getState().geral;
+  if (!selected) {
+    return;
+  }
+  try {
+    dispatch({ type: TYPES.FETCH_TVSERIES_LOADING });
+    const res = await tmdbAPI.get(`/discover/tv`, {
+      params: {
+        page,
+      },
+    });
+    await dispatch({
+      type: TYPES.FETCH_TVSERIES,
+      payload: res.data,
+    });
+    dispatch({ type: TYPES.FETCH_TVSERIES_FINISHED });
+  } catch (err) {
+    dispatch({ type: TYPES.INSERT_ERROR, payload: err.response });
+    history.push(process.env.PUBLIC_URL + '/error');
+  }
+};
+
 // Get movies search
 export const getMoviesSearch = (query, page) => async dispatch => {
   try {
@@ -128,6 +152,12 @@ export const getMoviesSearch = (query, page) => async dispatch => {
 export const clearMovies = () => {
   return {
     type: TYPES.FETCH_MOVIES_LOADING,
+  };
+};
+
+export const clearTVSeries = () => {
+  return {
+    type: TYPES.FETCH_TVSERIES_LOADING,
   };
 };
 

@@ -10,7 +10,6 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "add": "^2.0.6",
     "axios": "^0.18.0",
-    "node-sass": "^4.11.0",
     "query-string": "^6.4.0",
     "react": "^16.8.4",
     "react-burger-menu": "^2.6.5",
@@ -22,7 +21,7 @@
     "react-rating": "^1.6.2",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^5.0.1",
     "react-scroll": "^1.7.11",
     "react-select": "^2.4.2",
     "react-slick": "^0.23.2",
@@ -46,5 +45,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "sass": "^1.83.0"
+  }
 }

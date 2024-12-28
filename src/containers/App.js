@@ -10,6 +10,7 @@ import Sidebar from './Sidebar';
 import MenuMobile from './MenuMobile';
 import Discover from './Discover';
 import Genre from './Genre';
+import TVSeries from './TVSeries';
 import Search from './Search';
 import Movie from './Movie';
 import Person from './Person';
@@ -88,7 +89,7 @@ const ContentWrapper = styled.div`
 const SearhBarWrapper = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   padding: 2rem;
 `;
 
@@ -122,16 +123,6 @@ const App = ({ init, isLoading }) => {
     <Router history={history}>
       <React.Fragment>
         <MainWrapper isMobile={isMobile}>
-          {isMobile ? (
-            <MenuMobile />
-          ) : (
-            <>
-              <Sidebar />
-              <SearhBarWrapper>
-                <SearchBar />
-              </SearhBarWrapper>
-            </>
-          )}
           <ContentWrapper>
             <Switch>
               <Route
@@ -143,6 +134,11 @@ const App = ({ init, isLoading }) => {
                     to={process.env.PUBLIC_URL + '/discover/Popular'}
                   />
                 )}
+              />
+              <Route
+                path={process.env.PUBLIC_URL + '/discover/TVSeries'}
+                exact
+                component={TVSeries}
               />
               <Route
                 path={process.env.PUBLIC_URL + '/genres/:name'}
@@ -186,6 +182,16 @@ const App = ({ init, isLoading }) => {
               />
             </Switch>
           </ContentWrapper>
+          {isMobile ? (
+            <MenuMobile />
+          ) : (
+            <>
+              <Sidebar />
+              <SearhBarWrapper>
+                <SearchBar />
+              </SearhBarWrapper>
+            </>
+          )}
         </MainWrapper>
       </React.Fragment>
     </Router>

@@ -10,9 +10,6 @@ const Wrapper = styled.div`
 `;
 
 const Credits = ({ cast, baseUrl }) => {
-  if (!cast) {
-    return <Loader />;
-  }
   const [totalShow, setTotalShow] = useState(null);
   const sliderElement = useRef();
 
@@ -49,9 +46,13 @@ const Credits = ({ cast, baseUrl }) => {
   };
 
   return (
-    <Wrapper ref={sliderElement}>
-      <Slider {...settings}>{items}</Slider>
-    </Wrapper>
+    !cast 
+    ?
+      <Loader />
+    :
+      <Wrapper ref={sliderElement}>
+        <Slider {...settings}>{items}</Slider>
+      </Wrapper>
   );
 };
 

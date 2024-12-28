@@ -9,6 +9,7 @@ const Title = styled.h1`
   letter-spacing: -0.5px;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+  right: 0;
 
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: ${props => (props.size === '2' ? '2.7rem' : '2.2rem')};
@@ -25,6 +26,7 @@ const Subtitle = styled.h2`
   color: var(--color-primary);
   font-size: ${props => (props.size === '2' ? '1.7rem' : '1.2rem')};
   font-weight: 700;
+  right: 0;
 
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: ${props => (props.size === '2' ? '1.3rem' : '1.1rem')};

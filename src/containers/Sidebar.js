@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import StickyBox from 'react-sticky-box';
 
 import Logo from '../components/Logo';
-import TmdbLogo from '../svg/tmdb.svg';
 import MenuItem from '../components/MenuItem';
 
 const Wrapper = styled.div`
@@ -72,27 +71,7 @@ const StyledCoffe = styled.a`
   }
 `;
 
-const CopyRight = styled.div`
-  display: flex;
-  align-self: center;
-  align-items: center;
-  color: ${props => (props.mobile ? '#fff' : 'var(--color-primary-dark)')};
-  margin-bottom: ${props => (props.mobile ? '2rem' : '')};
-`;
-
-const StyledLink = styled.a`
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 4px;
-  color: inherit;
-`;
-
-const Svg = styled.img`
-  max-width: 100%;
-  height: 3rem;
-`;
-
-const Sidebar = ({ genres, staticCategories, selected }) => {
+const Sidebar = ({ genres, staticCategories, selected, series }) => {
   return (
     <StickyBox>
       <Wrapper>
@@ -101,28 +80,6 @@ const Sidebar = ({ genres, staticCategories, selected }) => {
         {renderStatic(staticCategories, selected)}
         <Heading>Genres</Heading>
         {renderGenres(genres, selected)}
-        <StyledCoffe
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://www.buymeacoffee.com/fidalgodev"
-        >
-          <img
-            src="https://www.buymeacoffee.com/assets/img/BMC-btn-logo.svg"
-            alt="Buy me a coffee"
-          />
-          <span style={{ marginLeft: '5px' }}>Buy me a coffee</span>
-        </StyledCoffe>
-        <CopyRight>
-          Copyright ©
-          <StyledLink href="https://www.github.com/fidalgodev">
-            Fidalgo
-          </StyledLink>
-        </CopyRight>
-        <Svg
-          src={`${TmdbLogo}`}
-          alt="The Movie Database"
-          style={{ margin: '2rem 0' }}
-        />
       </Wrapper>
     </StickyBox>
   );
@@ -162,8 +119,9 @@ function renderGenres(genres, selected, setisOpened) {
 
 const mapStateToProps = ({ geral }) => {
   return {
+    series: geral.series,
     staticCategories: geral.staticCategories,
-    genres: geral.genres,
+    genres: geral.genres || [], // Ensure genres is always an array
     selected: geral.selected,
   };
 };
